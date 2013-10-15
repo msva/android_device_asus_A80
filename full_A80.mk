@@ -32,4 +32,4 @@ PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/asus/A80/device.mk)
-$(call inherit-product-if-exists, vendor/asus/A68/A80-vendor.mk)
+$(call inherit-product-if-exists, vendor/asus/A80/A80-vendor.mk)
