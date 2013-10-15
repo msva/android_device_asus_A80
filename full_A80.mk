@@ -24,7 +24,7 @@ PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 PRODUCT_NAME := full_A80
-PRODUCT_DEVICE := A60
+PRODUCT_DEVICE := A80
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := PadFone Infinity
 PRODUCT_MANUFACTURER := ASUS
