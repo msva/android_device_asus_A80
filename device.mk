@@ -274,3 +274,7 @@ PRODUCT_COPY_FILES += \
 system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
 system/extras/bugmailer/send_bug:system/bin/send_bug
 
+<<<<<<< HEAD:device.mk
+=======
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+>>>>>>> 04cf280dc035517aaee14576096176859405c4c8:device_A80.mk
