@@ -168,7 +168,7 @@
 /system/lib/libstagefright_omx.so
 /system/lib/libxml.so
 /system/vendor/firmware/libpn544_fw.so
-/system/vendor/firmware/libpn544_fw_c2.so
+/system/vendor/firmware/libpn544_fw_C2.so
 /system/vendor/lib/libWVStreamControlAPI_L1.so
 /system/vendor/lib/libwvm.so
 /system/vendor/lib/libwvdrm_L1.so

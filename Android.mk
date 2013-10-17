@@ -22,6 +22,7 @@
 # bitrot and build breakages. Building a component unconditionally does
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
+TARGET_CPU_VARIANT := krait
 
 ifneq ($(filter A80 occam,$(TARGET_DEVICE)),)
 

@@ -8,7 +8,7 @@ PRODUCT_RELEASE_NAME := A80
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/asus/A80/device_A80.mk)
+$(call inherit-product, device/asus/A80/full_A80.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := A80

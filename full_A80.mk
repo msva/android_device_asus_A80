@@ -28,6 +28,7 @@ PRODUCT_DEVICE := A80
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := PadFone Infinity
 PRODUCT_MANUFACTURER := ASUS
+TARGET_CPU_VARIANT := krait
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Inherit from hardware-specific part of the product configuration

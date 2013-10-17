@@ -33,7 +33,7 @@ static int wifi_check_qcom_cfg_files()
     fp = fopen("/persist/wifi/.macaddr", "r");
     if ( fp == NULL )
     {
-        wfc_util_qcom_check_config((unsigned char *)macAddress);
+
         return 0;
     }
     else
@@ -43,7 +43,6 @@ static int wifi_check_qcom_cfg_files()
 
         // Write MAC String
         wfc_util_atoh( macAddress, 12, (unsigned char *)hex, 6);
-        wfc_util_qcom_check_config((unsigned char *)hex);
     }
     return 1;
 }

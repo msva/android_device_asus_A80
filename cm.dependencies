@@ -1,7 +1,7 @@
 [
  {
-   "repository": "asus_kernel_A80",
+   "repository": "android_kernel_asus_A80",
    "target_path": "kernel/asus/A80",
-   "branch": "jellybean"
+   "branch": "cm-10.1"
  }
 ]

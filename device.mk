@@ -20,6 +20,9 @@
 # Everything in this directory will become public
 
 DEVICE_PACKAGE_OVERLAYS += device/asus/A80/overlay
+PRODUCT_NAME += A80
+PRODUCT_DEVICE += A80
+PRODUCT_BRAND += asus
 
 LOCAL_PATH := device/asus/A80
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -271,7 +274,3 @@ PRODUCT_COPY_FILES += \
 system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
 system/extras/bugmailer/send_bug:system/bin/send_bug
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
-# This is the A80-specific audio package
-$(call inherit-product, frameworks/base/data/sounds/AudioPackage10.mk)
