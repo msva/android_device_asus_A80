@@ -3,20 +3,20 @@
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# * Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
-# * Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
-# * Neither the name of Code Aurora nor
-# the names of its contributors may be used to endorse or promote
-# products derived from this software without specific prior written
-# permission.
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of Code Aurora nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
 # CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
 # EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
 # PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
@@ -55,7 +55,7 @@ init_DMM()
         ;;
     esac
 
-mem="/sys/devices/system/memory"
+    mem="/sys/devices/system/memory"
     op=`cat $mem/movable_start_bytes`
     case "$op" in
     "0")
@@ -90,7 +90,7 @@ mem="/sys/devices/system/memory"
                 ;;
             esac
 
-echo online > $mem/memory$block/state
+            echo online > $mem/memory$block/state
             case "$?" in
             "0")
                 log -p i -t DMM \'echo online\' to logical hotplug succeeded.
@@ -103,12 +103,12 @@ echo online > $mem/memory$block/state
             ;;
         esac
 
-setprop ro.dev.dmm.dpd.start_address $movable_start_bytes
+        setprop ro.dev.dmm.dpd.start_address $movable_start_bytes
         setprop ro.dev.dmm.dpd.block $block
         ;;
     esac
 
-case "$target" in
+    case "$target" in
     "msm8960")
         return
         ;;
@@ -187,18 +187,18 @@ case "$target" in
             "FFA" | "SVLTE_FFA")
                 # linking to surf_keypad_qwerty.kcm.bin instead of surf_keypad_numeric.kcm.bin so that
                 # the UI keyboard works fine.
-                ln -s /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin
+                ln -s  /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin
                 ;;
             "Fluid")
                 setprop ro.sf.lcd_density 240
                 setprop qcom.bt.dev_power_class 2
                 ;;
             *)
-                ln -s /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin
+                ln -s  /system/usr/keychars/surf_keypad_qwerty.kcm.bin /system/usr/keychars/surf_keypad.kcm.bin
                 ;;
         esac
 
-insmod /system/lib/modules/ss_mfcinit.ko
+        insmod /system/lib/modules/ss_mfcinit.ko
         insmod /system/lib/modules/ss_vencoder.ko
         insmod /system/lib/modules/ss_vdecoder.ko
         chmod 0666 /dev/ss_mfc_reg
@@ -227,14 +227,14 @@ insmod /system/lib/modules/ss_mfcinit.ko
                     setprop ro.sf.hwrotation 90
                 fi
 
-setprop ro.sf.lcd_density 160
+                setprop ro.sf.lcd_density 160
                 ;;
             "MTP")
-# ASUS_BSP miniporting+++ Tingyi "[A80][DDS] DDS Archiecture support in system/core"
-# Modify DPI for A80 Panel"
-# setprop ro.sf.lcd_density 240
-                setprop ro.sf.lcd_density 480
-# ASUS_BSP miniporting--- Tingyi "[A80][DDS] DDS Archiecture support in system/core"
+# ASUS_BSP miniporting+++ Tingyi "[A68][DDS] DDS Archiecture support in system/core"
+#  Modify DPI for A68 Panel"
+#               setprop ro.sf.lcd_density 240
+                setprop ro.sf.lcd_density 320
+# ASUS_BSP miniporting--- Tingyi "[A68][DDS] DDS Archiecture support in system/core"
                 ;;
             *)
                 case "$soc_hwid" in
@@ -258,6 +258,6 @@ setprop ro.sf.lcd_density 160
             *)
         esac
 
-init_DMM
+        init_DMM
         ;;
 esac

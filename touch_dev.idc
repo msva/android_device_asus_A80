@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,10 +21,12 @@ device.internal = 1
 touch.deviceType = touchScreen
 touch.orientationAware = 1
 
-touch.size.calibration = geometric
-touch.size.scale = 0.155
+touch.size.calibration = diameter
+touch.size.scale = 22.5
 touch.size.bias = 0
 touch.size.isSummed = 0
 
 touch.pressure.calibration = amplitude
 touch.pressure.scale = 0.0125
+
+touch.orientation.calibration = none

@@ -33,7 +33,7 @@ on property:persist.asus.startlog=1
     start console
 on property:persist.asus.startlog=0
     start check-datalog
-    stop console
+    stop  console
 
 service saveramdump /system/etc/saveramdump.sh
     class late_start
@@ -42,18 +42,18 @@ service saveramdump /system/etc/saveramdump.sh
     
 #log_main log_system
 service logcat /system/bin/logcat -k -r 10000 -n 20 -v threadtime -f /data/logcat_log/logcat.txt
-class late_start
-disabled
+	class late_start
+	disabled
 #log_radio
 service logcat-radio /system/bin/logcat -r 10000 -b radio -n 20 -v time -f /data/logcat_log/logcat-radio.txt
-class late_start
-disabled
+	class late_start
+	disabled
 #log_events
 service logcat-events /system/bin/logcat -r 10000 -b events -n 20 -v threadtime -f /data/logcat_log/logcat-events.txt
-class late_start
-disabled
+	class late_start
+	disabled
 
-# ASUS_BSP+++ Wenli "Porting from A80 1030"
+# ASUS_BSP+++ Wenli "Porting from A68 1030"
 # tcpdump_warp service to save tcpdump to /sdcard
 service tcpdump-warp /system/xbin/tcpdump.sh
     class late_start
@@ -92,21 +92,21 @@ service modem_restart /system/xbin/modem_restart.sh
     disabled
     oneshot
 
-# ASUS_BSP--- Wenli "Porting from A80 1030"
+# ASUS_BSP--- Wenli "Porting from A68 1030"
 #ASUS_BSP +++ Yujoe "[A60K][Diag][N/A][Improve]Improve the process of saving QXDM log to SD card."
 service diag_mdlog /system/bin/diag_mdlog
     class late_start
     disabled
 
 on property:persist.asus.qxdmlog.enable=1
-    start diag_mdlog
+    start diag_mdlog  
 
 on property:persist.asus.qxdmlog.enable=0
     stop diag_mdlog
     write /sys/power/wake_unlock diag_fwrite
 
 on property:debug.asus.qxdmlog.enable=1
-    start diag_mdlog
+    start diag_mdlog  
 
 on property:debug.asus.qxdmlog.enable=0
     stop diag_mdlog
@@ -142,17 +142,17 @@ on post-fs-data
     chmod 0755 /data/media/asus_log
 
 #ASUS_BSP simpson: add for auto-ICON-LED +++
-    chown system system /data/.tmp/A80_TP_ID
+    chown system system /data/.tmp/A68_TP_ID
 #ASUS_BSP simpson: add for auto-ICON-LED ---
 #ASUS_BSP +++ Jason Chang "directory for compass calibration data"
     mkdir /data/amit 0775 system system
 #ASUS_BSP --- Jason Chang "directory for compass calibration data"
-symlink /data/busybox /system/bin/busybox
+	symlink /data/busybox /system/bin/busybox 
 
-#ASUS_BSP+++ jacob kung "[A80][USB][NA][NA] setup qpst download mode properity"
+#ASUS_BSP+++ jacob kung "[A68][USB][NA][NA] setup qpst download mode properity"
 on property:persist.sys.downloadmode.enable=1
 write /sys/module/restart/parameters/download_mode 1
 
 on property:persist.sys.downloadmode.enable=0
 write /sys/module/restart/parameters/download_mode 0
-#ASUS_BSP--- jacob kung "[A80][USB][NA][NA] setup qpst download mode properity"
+#ASUS_BSP--- jacob kung "[A68][USB][NA][NA] setup qpst download mode properity"

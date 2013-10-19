@@ -5,7 +5,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -28,7 +28,6 @@ PRODUCT_DEVICE := A80
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := PadFone Infinity
 PRODUCT_MANUFACTURER := ASUS
-TARGET_CPU_VARIANT := krait
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Inherit from hardware-specific part of the product configuration

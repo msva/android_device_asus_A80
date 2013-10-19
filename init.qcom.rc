@@ -2,20 +2,20 @@
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# * Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
-# * Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
-# * Neither the name of Code Aurora nor
-# the names of its contributors may be used to endorse or promote
-# products derived from this software without specific prior written
-# permission.
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of Code Aurora nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
 # CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
 # EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
 # PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
@@ -45,7 +45,7 @@ on init
     mkdir /persist 0771 system system
     #ASUS_BSP+++ change modem_wait owner on init
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
-#ASUS_BSP---
+	#ASUS_BSP---
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -56,7 +56,7 @@ on early-init
     export EXTERNAL_STORAGE /storage/sdcard0
 #ASUS_BSP+++ Josh_Liao "use fuse to share /data/media in MTP"
     mkdir /storage 0775 system sdcard_r
-# mkdir /storage/sdcard0 0000 system system
+#   mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard0 0775 system system
 #ASUS_BSP--- Josh_Liao "use fuse to share /data/media in MTP"
     symlink /storage/sdcard0 /sdcard
@@ -94,8 +94,8 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
 # ASUS_BSP +++ Josh_Liao "ntfs and exfat support"
-# chmod 0644 /system/lib/modules/tntfs.ko
-# chmod 0644 /system/lib/modules/texfat.ko
+#    chmod 0644 /system/lib/modules/tntfs.ko
+#    chmod 0644 /system/lib/modules/texfat.ko
     insmod /system/lib/modules/tntfs.ko
     insmod /system/lib/modules/texfat.ko
 # ASUS_BSP --- Josh_Liao "ntfs and exfat support"
@@ -109,8 +109,8 @@ on boot
 
 # ASUS_BSP+++ BennyCheng "fix CTS SUID file scanner test fail"
     #Set SUID bit for usbhub
-# chmod 4755 /system/bin/usbhub
-# chmod 755 /system/bin/usbhub_init
+#    chmod 4755 /system/bin/usbhub
+#    chmod 755 /system/bin/usbhub_init
 # ASUS_BSP--- BennyCheng "fix CTS SUID file scanner test fail"
 
     #Remove SUID bit for iproute2 ip tool
@@ -246,7 +246,7 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-mkdir /data/logcat_log 0777 system system
+	mkdir /data/logcat_log 0777 system system
 
     mkdir /data/audio/ 0770 media audio
     # Enable the setgid bit on the directory
@@ -263,10 +263,10 @@ mkdir /data/logcat_log 0777 system system
 # ASUS_BSP+++ BennyCheng "fix CTS SUID file scanner test fail"
 # Export GPIO56 for fusion targets to enable/disable hub
 #service usbhub_init /system/bin/usbhub_init
-# class late_start
-# user root
-# disabled
-# oneshot
+#   class late_start
+#   user root
+#   disabled
+#   oneshot
 # ASUS_BSP--- BennyCheng "fix CTS SUID file scanner test fail"
 
 on property:init.svc.surfaceflinger=stopped
@@ -275,7 +275,7 @@ on property:init.svc.surfaceflinger=stopped
 
 # ASUS_BSP+++ BennyCheng "fix CTS SUID file scanner test fail"
 #on property:ro.board.platform=msm7630_fusion
-# start usbhub_init
+#    start usbhub_init
 # ASUS_BSP--- BennyCheng "fix CTS SUID file scanner test fail"
 
 on property:init.svc.wpa_supplicant=stopped
@@ -381,7 +381,7 @@ on property:ro.use_data_netmgrd=false
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
 on property:ro.data.large_tcp_window_size=true
-    write /proc/sys/net/ipv4/tcp_adv_win_scale 1
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
 service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     class late_start
@@ -412,10 +412,10 @@ service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -dddd \
     -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1
-    # we will start as root and wpa_supplicant will switch to user wifi
-    # after setting up the capabilities required for WEXT
-    # user wifi
-    # group wifi inet keystore
+    #   we will start as root and wpa_supplicant will switch to user wifi
+    #   after setting up the capabilities required for WEXT
+    #   user wifi
+    #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -424,10 +424,10 @@ service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -e/data/misc/wifi/entropy.bin
-    # we will start as root and wpa_supplicant will switch to user wifi
-    # after setting up the capabilities required for WEXT
-    # user wifi
-    # group wifi inet keystore
+    #   we will start as root and wpa_supplicant will switch to user wifi
+    #   after setting up the capabilities required for WEXT
+    #   user wifi
+    #   group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -459,10 +459,10 @@ service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
 
 #ASUS_BSP+++ LandiceFu "Disable Wi-Fi Positioning Feature"
 #service wiperiface /system/bin/wiperiface
-# class late_start
-# user gps
-# group gps qcom_oncrpc net_raw
-# oneshot
+#    class late_start
+#    user gps
+#    group gps qcom_oncrpc net_raw
+#    oneshot
 #ASUS_BSP--- LandiceFu "Disable Wi-Fi Positioning Feature"
 
 service gpsone_daemon /system/bin/gpsone_daemon
@@ -473,36 +473,36 @@ service gpsone_daemon /system/bin/gpsone_daemon
 
 #ASUS_BSP +++ LandiceFu "[A80][GPS][NA][Spec] Disable Qualcomm Indoor Positioning System"
 #service quipc_igsn /system/bin/quipc_igsn
-# class late_start
-# user gps
-# group inet gps
-# disabled
+#    class late_start
+#    user gps
+#    group inet gps
+#    disabled
 
 #service quipc_main /system/bin/quipc_main
-# class late_start
-# user gps
-# group gps net_admin wifi inet
-# disabled
+#    class late_start
+#    user gps
+#    group gps net_admin wifi inet
+#    disabled
 #ASUS_BSP --- LandiceFu "[A80][GPS][NA][Spec] Disable Qualcomm Indoor Positioning System"
 
 #ASUS_BSP +++ LandiceFu "[A80][GPS][NA][Spec] Disable XTRA-T Feature"
 #service location_mq /system/bin/location-mq
-# class late_start
-# user gps
-# group gps
-# disabled
+#    class late_start
+#    user gps
+#    group gps
+#    disabled
 
 #service xtwifi_inet /system/bin/xtwifi-inet-agent
-# class late_start
-# user gps
-# group inet gps
-# disabled
+#    class late_start
+#    user gps
+#    group inet gps
+#    disabled
 
 #service xtwifi_client /system/bin/xtwifi-client
-# class late_start
-# user gps
-# group net_admin wifi inet gps
-# disabled
+#    class late_start
+#    user gps
+#    group net_admin wifi inet gps
+#    disabled
 #ASUS_BSP --- LandiceFu "[A80][GPS][NA][Spec] Disable XTRA-T Feature"
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
@@ -515,7 +515,7 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
 #ASUS_BSP+++ "move init.qcom.wifi.sh (class core --> class late_start)"
 service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
 # ASUS_BSP +++ Josh_Liao "encrypt phone"
-# class late_start
+#    class late_start
     class core
     disabled
 # ASUS_BSP --- Josh_Liao "encrypt phone"
@@ -612,7 +612,7 @@ on property:persist.ims.regmanager.mode=1
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
-    write /proc/sys/net/ipv4/tcp_adv_win_scale 1
+    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
 service time_daemon /system/bin/time_daemon
     class late_start
@@ -625,28 +625,28 @@ on property:persist.timed.enable=true
     start time_daemon
     
 service asus_ramdump /system/etc/init.asus.ramdump.sh
-class late_start
+	class late_start
     user root
     group root
     disabled
     oneshot
 on property:persist.asus.ramdump=0
-start asus_ramdump
+	start asus_ramdump
 
 on property:persist.asus.ramdump=1
-start asus_ramdump
+	start asus_ramdump
 
 service asus_kernelmsg /system/etc/init.asus.kernelmessage.sh
-class late_start
+	class late_start
     user root
     group root
     disabled
     oneshot
 on property:persist.asus.kernelmessage=0
-start asus_kernelmsg
+	start asus_kernelmsg
 
 on property:persist.asus.kernelmessage=7
-start asus_kernelmsg
+	start asus_kernelmsg
 
 service battery_monitor /system/bin/battery_monitor
     user system
@@ -674,11 +674,11 @@ service sdcard /system/bin/sdcard /data/media 1015 1015
     disabled
 
 #service sdcard /system/bin/sh init.asus.sdcard.sh
-# user root
-# group root
-# class late_start
-# disabled
-# oneshot
+#    user root
+#    group root
+#    class late_start
+#    disabled
+#    oneshot
 #ASUS_BSP --- Jimmy,Josh "remove fuse"
 
 on property:ro.fuse_sdcard=true
@@ -739,34 +739,34 @@ service asus_audbg /system/etc/init.asus.audbg.sh
     group root
     disabled
     oneshot
-
+	
 on property:persist.asus.audbg=0
     start asus_audbg
 
 on property:persist.asus.audbg=1
     start asus_audbg
-
+	
 on property:persist.asus.audbg=2
     start asus_audbg
 # ASUS_BSP--- Bruno "[Audio] Add persist property for Audio debug"
-
+	
 # ASUS_BSP--- Bruno "[Audio] Add persist property for P01 Key debug mode"
 service asus_p01dbg /system/etc/init.asus.p01dbg.sh
     user root
     group root
     disabled
     oneshot
-
+	
 on property:persist.asus.p01dbg=0
     start asus_p01dbg
-
+	
 on property:persist.asus.p01dbg=1
     start asus_p01dbg
-
+	
 on property:persist.asus.p01dbg=2
    start asus_p01dbg
 # ASUS_BSP--- Bruno "[Audio] Add persist property for P01 Key debug mode"
-
+	
 # ASUS_BSP--- Bruno "[Audio] Add persist property for MaxxAudio"
 service maxx_mode_switch /system/etc/init.asus.maxxaudio.sh
     user root
@@ -781,7 +781,7 @@ on property:sys.config.maxxaudio=1
     start maxx_mode_switch
     
 on property:sys.config.maxxaudio=2
-    start maxx_mode_switch
+    start maxx_mode_switch    
     
 on property:sys.config.maxxaudio=3
     start maxx_mode_switch
@@ -796,10 +796,10 @@ service vibrator_voltage /system/etc/init.asus.vibrator_voltage.sh
     group root
     disabled
     oneshot
-
+	
 on property:persist.asus.vibrator_voltage=2
     start vibrator_voltage
-
+	
 on property:persist.asus.vibrator_voltage=3
-    start vibrator_voltage
+    start vibrator_voltage	
 #ASUS_BSP---Tim "[Vibrator]"Add persist property for changing voltage of vibrator

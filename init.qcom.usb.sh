@@ -4,20 +4,20 @@
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
 # met:
-# * Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
-# * Redistributions in binary form must reproduce the above
-# copyright notice, this list of conditions and the following
-# disclaimer in the documentation and/or other materials provided
-# with the distribution.
-# * Neither the name of Code Aurora Forum, Inc. nor the names of its
-# contributors may be used to endorse or promote products derived
-# from this software without specific prior written permission.
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of Code Aurora Forum, Inc. nor the names of its
+#       contributors may be used to endorse or promote products derived
+#      from this software without specific prior written permission.
 #
 # THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
 # WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
-# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
 # BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 # CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
@@ -63,10 +63,10 @@ case "$usbchgdisabled" in
         "msm8660")
         echo "$usbchgdisabled" > /sys/module/pmic8058_charger/parameters/disabled
         echo "$usbchgdisabled" > /sys/module/smb137b/parameters/disabled
-;;
+	;;
         "msm8960")
         echo "$usbchgdisabled" > /sys/module/pm8921_charger/parameters/disabled
-;;
+	;;
     esac
 esac
 
@@ -77,7 +77,7 @@ case "$usbcurrentlimit" in
     case $target in
         "msm8960")
         echo "$usbcurrentlimit" > /sys/module/pm8921_charger/parameters/usb_max_current
-;;
+	;;
     esac
 esac
 #
@@ -85,46 +85,46 @@ esac
 #
 #setprop sys.usb.config.extra diag
 #baseband=`getprop ro.baseband`
-echo 1 > /sys/class/android_usb/f_mass_storage/lun/nofua
+echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
 #usb_config=`getprop persist.sys.usb.config`
 #case "$usb_config" in
-# "" | "adb") #USB persist config not set, select default configuration
-# case $target in
-# "msm8974")
-# setprop persist.sys.usb.config diag,adb
-# ;;
-# "msm8960")
-# case "$baseband" in
-# "mdm")
-# setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
-# ;;
-# "sglte")
-# setprop persist.sys.usb.config diag,diag_mdm,serial_smd,serial_tty,serial_hsuart,rmnet_hsuart,mass_storage,adb
-# ;;
-# *)
-# setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
-# ;;
-# esac
-# ;;
-# "msm7627a")
-# setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_smd,mass_storage,adb
-# ;;
-# * )
-# case "$baseband" in
-# "svlte2a")
-# setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_smd,rmnet_smd_sdio,mass_storage,adb
-# ;;
-# "csfb")
-# setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_tty,rmnet_sdio,mass_storage,adb
-# ;;
-# *)
-# setprop persist.sys.usb.config diag,serial_tty,serial_tty,rmnet_smd,mass_storage,adb
-# ;;
-# esac
-# ;;
-# esac
-# ;;
-# * ) ;; #USB persist config exists, do nothing
+#    "" | "adb") #USB persist config not set, select default configuration
+#        case $target in
+#            "msm8974")
+#                setprop persist.sys.usb.config diag,adb
+#                ;;
+#            "msm8960")
+#                case "$baseband" in
+#                    "mdm")
+#                         setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+#                    ;;
+#                    "sglte")
+#                         setprop persist.sys.usb.config diag,diag_mdm,serial_smd,serial_tty,serial_hsuart,rmnet_hsuart,mass_storage,adb
+#                    ;;
+#                    *)
+#                         setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
+#                    ;;
+#                esac
+#            ;;
+#            "msm7627a")
+#                setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_smd,mass_storage,adb
+#            ;;
+#            * )
+#                case "$baseband" in
+#                    "svlte2a")
+#                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_smd,rmnet_smd_sdio,mass_storage,adb
+#                    ;;
+#                    "csfb")
+#                         setprop persist.sys.usb.config diag,diag_mdm,serial_sdio,serial_tty,rmnet_sdio,mass_storage,adb
+#                    ;;
+#                    *)
+#                         setprop persist.sys.usb.config diag,serial_tty,serial_tty,rmnet_smd,mass_storage,adb
+#                    ;;
+#                esac
+#            ;;
+#        esac
+#    ;;
+#    * ) ;; #USB persist config exists, do nothing
 #esac
 
 #
@@ -134,49 +134,49 @@ echo 1 > /sys/class/android_usb/f_mass_storage/lun/nofua
 #cdromname="/system/etc/cdrom_install.iso"
 #cdromenable=`getprop persist.service.cdrom.enable`
 #case "$target" in
-# "msm7627a" | "msm8625")
-# case "$cdromenable" in
-# 0)
-# echo "" > /sys/class/android_usb/android0/f_mass_storage/lun0/file
-# ;;
-# 1)
-# echo "mounting usbcdrom lun"
-# echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/lun0/file
-# ;;
-# esac
-# ;;
+#        "msm7627a" | "msm8625")
+#                case "$cdromenable" in
+#                        0)
+#                                echo "" > /sys/class/android_usb/android0/f_mass_storage/lun0/file
+#                                ;;
+#                        1)
+#                                echo "mounting usbcdrom lun"
+#                                echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/lun0/file
+#                                ;;
+#                esac
+#                ;;
 #esac
 
 ls_ssn=`ls /data/asusdata/SSN`
 case "$ls_ssn" in
-*SSN*)
-ssn_value=`cat /data/asusdata/SSN`
-echo "$ssn_value" > /sys/class/android_usb/android0/iSerial
-;;
-* )
-echo "C4ATAS000000" > /sys/class/android_usb/android0/iSerial
-;;
+	*SSN*)
+		ssn_value=`cat /data/asusdata/SSN`
+		echo "$ssn_value" > /sys/class/android_usb/android0/iSerial
+	;;
+	* )
+		echo "C4ATAS000000" > /sys/class/android_usb/android0/iSerial
+	;;
 esac
 
 adb_enable=`ls /data/asusdata/adb_enable`
 persist_sysusbconfig=`getprop persist.sys.usb.config`
 persist_sysusbotgmode=`getprop persist.sys.usb.otg.mode`
 case "$adb_enable" in
-*adb_enable*)
-case "$persist_sysusbconfig" in
-"mtp,adb")
-;;
-* )
-setprop persist.sys.usb.config mtp,adb
-;;
-esac
-case "$persist_sysusbotgmode" in
-"peripheral")
-;;
-* )
-setprop persist.sys.usb.otg.mode peripheral
-;;
-esac
-setprop debug.asus.adbenable 1
-;;
+	*adb_enable*)
+		case "$persist_sysusbconfig" in
+			"mtp,adb")
+			;;
+			* )
+				setprop persist.sys.usb.config mtp,adb
+			;;
+		esac
+		case "$persist_sysusbotgmode" in
+			"peripheral")
+			;;
+			* )
+				setprop persist.sys.usb.otg.mode peripheral
+			;;
+		esac
+		setprop debug.asus.adbenable 1
+	;;
 esac

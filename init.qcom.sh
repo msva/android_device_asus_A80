@@ -3,20 +3,20 @@
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# * Redistributions of source code must retain the above copyright
-# notice, this list of conditions and the following disclaimer.
-# * Redistributions in binary form must reproduce the above copyright
-# notice, this list of conditions and the following disclaimer in the
-# documentation and/or other materials provided with the distribution.
-# * Neither the name of Code Aurora nor
-# the names of its contributors may be used to endorse or promote
-# products derived from this software without specific prior written
-# permission.
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of Code Aurora nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
 #
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
 # CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
 # EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
 # PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
@@ -46,17 +46,17 @@ start_sensors()
         # Otherwise leave the file with it's current contents
         echo 1 > /data/system/sensors/settings
     fi
-start sensors
+    start sensors
 }
 
 start_battery_monitor()
 {
-chown root.system /sys/module/pm8921_bms/parameters/*
-chmod 0660 /sys/module/pm8921_bms/parameters/*
-mkdir -p /data/bms
-chown root.system /data/bms
-chmod 0770 /data/bms
-start battery_monitor
+	chown root.system /sys/module/pm8921_bms/parameters/*
+	chmod 0660 /sys/module/pm8921_bms/parameters/*
+	mkdir -p /data/bms
+	chown root.system /data/bms
+	chmod 0770 /data/bms
+	start battery_monitor
 }
 
 baseband=`getprop ro.baseband`
@@ -67,7 +67,7 @@ baseband=`getprop ro.baseband`
 #
 for file in /proc/sys/net/ipv6/conf/*
 do
-echo 0 > $file/accept_ra_defrtr
+  echo 0 > $file/accept_ra_defrtr
 done
 
 #
@@ -84,12 +84,12 @@ case "$baseband" in
 esac
 #ASUS_BSP +++ LandiceFu "[A80][GPS][NA][Spec] Disable Qualcomm Indoor Positioning System"
 #case "$target" in
-# "msm7630_surf" | "msm8660" | "msm8960")
-# start quipc_igsn
+#        "msm7630_surf" | "msm8660" | "msm8960")
+#        start quipc_igsn
 #esac
 #case "$target" in
-# "msm7630_surf" | "msm8660" | "msm8960")
-# start quipc_main
+#        "msm7630_surf" | "msm8660" | "msm8960")
+#        start quipc_main
 #esac
 #ASUS_BSP --- LandiceFu "[A80][GPS][NA][Spec] Disable Qualcomm Indoor Positioning System"
 case "$target" in
@@ -119,10 +119,10 @@ case "$target" in
         #start_sensors
         case "$baseband" in
             "msm")
-start_battery_monitor;;
+		start_battery_monitor;;
         esac
 
-platformvalue=`cat /sys/devices/system/soc/soc0/hw_platform`
+        platformvalue=`cat /sys/devices/system/soc/soc0/hw_platform`
         case "$platformvalue" in
              "Fluid")
                  start profiler_daemon;;

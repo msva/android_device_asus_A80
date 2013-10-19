@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter A80 occam,$(TARGET_DEVICE)),)
+ifneq ($(filter A68 occam,$(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 

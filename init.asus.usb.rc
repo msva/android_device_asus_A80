@@ -21,7 +21,7 @@ on property:sys.usb.config=rndis,adb
     write /sys/class/android_usb/android0/idProduct 5213
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
-    start adbd
+    start adbd    
     setprop sys.usb.state $sys.usb.config
 #
 on property:sys.usb.config=mtp
@@ -38,7 +38,7 @@ on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/idProduct 5211
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
-    start adbd
+    start adbd    
     setprop sys.usb.state $sys.usb.config
 #
 on property:sys.usb.config=ptp
@@ -55,7 +55,7 @@ on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/idProduct 5215
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
-    start adbd
+    start adbd    
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=adb
@@ -64,7 +64,7 @@ on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/idProduct 4DAE
     write /sys/class/android_usb/android0/functions $sys.usb.config
     write /sys/class/android_usb/android0/enable 1
-    start adbd
+    start adbd    
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.fastboot=1
