@@ -729,4 +729,8 @@ int gr_free_surface(gr_surface surface)
 void gr_write_frame_to_file(int fd)
 {
     write(fd, gr_mem_surface.data, vi.xres * vi.yres * vi.bits_per_pixel / 8);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 02efb8e6e6e84c4ecf8b0e038d2db1b6f4afaf2e
