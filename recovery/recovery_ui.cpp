@@ -34,10 +34,10 @@ const char* ITEMS[] = { "reboot system now",
                         "wipe cache partition",
                         NULL };
 
-class A68UI : public ScreenRecoveryUI
+class A80UI : public ScreenRecoveryUI
 {
 public:
-    A68UI() :
+    A80UI() :
         consecutive_power_keys(0) {
     }
 
@@ -60,11 +60,11 @@ private:
     int consecutive_power_keys;
 };
 
-class A68Device : public Device
+class A80Device : public Device
 {
 public:
-    A68Device() :
-        ui(new A68UI) {
+    A80Device() :
+        ui(new A80UI) {
     }
 
     RecoveryUI* GetUI() { return ui; }
@@ -105,6 +105,6 @@ private:
     RecoveryUI* ui;
 };
 
-Device* A68_device() {
-    return new A68Device;
+Device* A80_device() {
+    return new A80Device;
 }
