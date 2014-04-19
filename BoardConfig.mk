@@ -1,8 +1,8 @@
 # inherit from the proprietary version
 -include vendor/asus/A80/BoardConfigVendor.mk
 
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mfpu=neon-vfpv4 -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon-vfpv4 -mfloat-abi=softfp
 
 # Device information
 TARGET_ARCH := arm
@@ -14,12 +14,14 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_BOOTLOADER_BOARD_NAME := A80
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOARD_PLATFORM := msm8960
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_CPU_VARIANT := krait
 
 #Qcom enhancements
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_QCOM_DISPLAY_VARIANT := caf
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DNEW_ION_API
+TARGET_USES_QCOM_BSP := true
+#TARGET_QCOM_DISPLAY_VARIANT := caf
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP -DNEW_ION_API
 TARGET_QCOM_MEDIA_VARIANT := caf
 
 # FIXME: HOSTAPD-derived wifi driver
@@ -34,10 +36,10 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 
 #Kernel stuff
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3
-BOARD_KERNEL_BASE := 0x80200000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 vmalloc=320M
+BOARD_KERNEL_BASE := 0x80208000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x82200000
 TARGET_KERNEL_CONFIG := A80_defconfig
 TARGET_PREBUILT_KERNEL := device/asus/A80/kernel
 TARGET_KERNEL_SOURCE := kernel/asus/A80
@@ -78,6 +80,8 @@ TARGET_RECOVERY_UI_LIB := librecovery_ui_A80
 TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_PROVIDES_LIBLIGHT := true
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 # Krait optimization
 TARGET_USE_KRAIT_BIONIC_OPTIMIZATION := true
