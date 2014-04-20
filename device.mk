@@ -1,9 +1,17 @@
 # $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 DEVICE_PACKAGE_OVERLAYS := device/asus/A80/overlay
-    
-TARGET_SCREEN_HEIGHT := 1920
-TARGET_SCREEN_WIDTH := 1080
+
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/asus/A80/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+TARGET_PREBUILT_KERNEL := device/asus/A80/kernel
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
 
 # This device is xxhdpi.  However the platform doesn't
 # currently contain all of the bitmaps at xxhdpi density so
@@ -69,10 +77,80 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_CHARACTERISTICS := nosdcard
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.opengles.version=196608
 
-# call hwui memory config
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	rild.libpath=/system/lib/libril-qc-qmi-1.so
+
+# Upto 3 layers can go through overlays
+PRODUCT_PROPERTY_OVERRIDES += debug.mdpcomp.maxlayer=3
+
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# Ril sends only one RIL_UNSOL_CALL_RING, so set call_ring.multiple to false
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.telephony.call_ring.multiple=0
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+	e2fsck \
+	efsks
+
+PRODUCT_PACKAGES += \
+	libgenlock \
+	liboverlay \
+	hwcomposer.msm8960 \
+	gralloc.msm8960 \
+	copybit.msm8960 \
+	libasusdec_jni
+
+PRODUCT_PACKAGES += \
+	alsa.msm8960 \
+	audio_policy.msm8960 \
+	audio.primary.msm8960 \
+	audio.a2dp.default \
+	audio.usb.default \
+	audio.r_submix.default \
+	libaudio-resampler
+
+PRODUCT_PACKAGES += \
+	librs_jni \
+	com.android.future.usb.accessory
+
+PRODUCT_PACKAGES += \
+	hci_qcomm_init
+
+PRODUCT_PACKAGES += \
+	power.msm8960
+
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.qualcomm.bt.hci_transport=smd
+
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libstagefrighthw
+
+PRODUCT_PACKAGES += \
+	libloc_adapter \
+	libloc_eng \
+	libloc_api_v02 \
+	libgps.utils \
+	gps.msm8960
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	rild.libpath=/system/lib/libril-qc-qmi-1.so
+
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # $(call inherit-product, build/target/product/full.mk)
 
